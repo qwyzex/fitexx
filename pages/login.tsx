@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
-import Login from "../components/Login";
 import { redirect } from "../functions";
+
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+
+import Login from "../components/Login";
+import { auth, db } from "../firebase";
 import Loading from "../components/Loading";
 
 const LoginPage: NextPage = () => {
@@ -12,16 +15,40 @@ const LoginPage: NextPage = () => {
     const [isUser, setIsUser] = useState(false);
 
     useEffect(() => {
+        async function getUserDoc() {
+            const usersRef = collection(db, "users");
+            const docRef = doc(usersRef, user!.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setLoaded(true);
+            } else {
+                await setDoc(doc(db, "users", user!.uid), {
+                    uid: user!.uid,
+                    username: "",
+                    bio: "",
+                    complete: true,
+                })
+                    .then(() => {
+                        setLoaded(true);
+                    })
+                    .catch((error: any) => {
+                        console.warn(error.code);
+                        console.warn(error.message);
+                    });
+            }
+        }
+
         if (user) {
             setIsUser(true);
-            redirect("/");
+            getUserDoc().then(() => redirect("/"));
         }
         setTimeout(() => {
             setLoaded(true);
-        }, 1);
+        }, 600);
     }, [user]);
 
-    return <>{loaded ? isUser ? null : <Login /> : <Loading />}</>;
+    return loaded ? isUser ? null : <Login /> : <Loading />;
 };
 
 export default LoginPage;

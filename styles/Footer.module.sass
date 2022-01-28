@@ -1,3 +1,28 @@
+@import ./Variables
+    
 .container 
     padding: .6rem
-    background-color: royalblue
+
+    position: fixed
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 10
+
+    width: 100%
+    background-color: $gry
+
+    nav
+        ul
+            display: flex
+            gap: 1rem
+
+            li
+                list-style: none
+
+                button
+                    padding: .8rem
+                    border-radius: .2rem
+
+                    color: $gry
+                    background-color: $whi
