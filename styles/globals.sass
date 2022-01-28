@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import ./Variables
+	
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+:root
+	font-size: 15px
+	font-family: var(--font-body)
+	// letter-spacing: 5px
+
+	--font-body: "Fira Sans"
+
+button, input[type="submit"], input[type="button"]
+	background-color: $acc
+	outline: 3px solid #00000000
+	transition: .3s ease
+
+	border: none
+	border-radius: .3em
+	padding: 1rem
+
+	text-transform: uppercase
+	font-weight: 600
+	color: #ffffff
+
+	&:hover
+		background-color: lighten($acc, 10%)
+	&:active, &:focus
+		outline: 3px solid lighten($acc, 30%)
+                    
+	cursor: pointer
+
+	&[disabled]
+		filter: saturate(50%)
+		outline: none
+
+.form
+	&:not(.input)
+		&:not(.footer)
+			width: 40rem
+			max-width: 95vw
+			
+		
+
+	&.input
+		border: none
+		outline: none
+		padding: .5rem
+
+		outline: 3px solid #00000000
+		background-color: #e3e3e3
+		border-radius: .3em
+		transition: .3s ease
+
+		&:focus
+			outline: 3px solid #202020
+	&.footer
+		display: flex
+		justify-content: space-between
+		gap: 2rem
+
+		width: 100%
+		padding: 0 1rem
+
+		div 
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+
+			a
+				text-decoration: none
+				color: $acc
+
+				&:hover
+					text-decoration: underline
+
+.formError
+	position: absolute
+	bottom: 1rem
+	left: 50%
+	transform: translate(-50%, 0)
+
+	width: max-content
+	max-width: 80vw
+
+	// padding: .5rem 1rem
+	border-radius: .3em
+	background-color: $err
+
+	font-weight: 600
+	color: #fff
+	animation: error 2s
+
+	p 
+		text-transform: uppercase
+		padding: .5rem 1rem
+		letter-spacing: 1.3px
+
+@keyframes error
+	0%
+		transform: translate(-50%, 3rem)
+	100%
+		transform: translate(-50%, 0)
