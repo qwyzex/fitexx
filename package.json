@@ -1,6 +1,6 @@
 {
   "name": "firebase-todo",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"next lint\"",
