@@ -1,6 +1,6 @@
 import Router from "next/router";
 
-export function redirect(href: string) {
+export function redirect(href: string | any) {
     Router.push(href);
 }
 

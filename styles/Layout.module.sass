@@ -1,7 +1,12 @@
+@import ./Variables
+    
 .app
     min-height: 100vh
     display: flex
     justify-content: center
     align-items: center
 
-    background: linear-gradient(135deg, #1215e7, #621ae7)
+    background: $whi
+
+    &.noUser
+        background-color: linear-gradient(135deg, $acc, $err)

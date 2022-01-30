@@ -8,12 +8,11 @@ const Footer = () => {
 
     return (
         <>
-            {openAccountTab && (
-                <AccountTab
-                    setStateRef={openAccountTab && setOpenAccountTab}
-                    stateRef={openAccountTab && openAccountTab}
-                />
-            )}
+            <AccountTab
+                setStateRef={openAccountTab && setOpenAccountTab}
+                stateRef={openAccountTab && openAccountTab}
+                cls={openAccountTab ? "accountTabOpen" : ""}
+            />
             <footer className={styles.container}>
                 <nav>
                     <ul className={styles.listWrapper}>
