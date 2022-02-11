@@ -1,49 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 @import ./Variables
 	
 *
 	margin: 0
 	padding: 0
 	box-sizing: border-box
+	font-family: var(--font-body)
 
 :root
 	font-size: 15px
-	font-family: var(--font-body)
 	// letter-spacing: 5px
 
-	--font-body: "Fira Sans"
+	--font-body: 'Poppins'
+body
+	overflow: hidden
+	// background: #DA22F
+	
 
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+code
+	&.cascade
+		color: #bebebe
+		// font-style: italic
+		// &::before
+		// 	content: '// '''
+
+div, 
+section, 
+nav
+form
+	&.cascade
+		filter: brightness(50%)
+		pointer-events: none
+		background-color: #f3f3f3
+		user-select: none
+
+input
+	&:disabled
+		cursor: not-allowed
+	&:read-only
+		cursor: not-allowed
+		
 button, input[type="submit"], input[type="button"]
-	background-color: $acc
-	outline: 3px solid #00000000
-	transition: .3s ease
-
 	border: none
-	border-radius: .3em
-	padding: 1rem
-
-	text-transform: uppercase
-	font-weight: 600
-	color: #ffffff
-
-	&:hover
-		background-color: lighten($acc, 10%)
-	&:active, &:focus
-		outline: 3px solid lighten($acc, 30%)
-                    
+	transition: .3s ease
 	cursor: pointer
 
-	&[disabled]
-		filter: saturate(50%)
-		outline: none
+	font-family: var(--font-body)
+
+	&.maxWidth
+		width: max-content
+
+	&.global
+		background-color: $acc
+		outline: 3px solid #00000000
+
+		border-radius: .3em
+		padding: 1rem
+
+		text-transform: uppercase
+		font-weight: 600
+		color: #ffffff
+
+		&:hover
+			background-color: lighten($acc, 10%)
+		&:active, &:focus
+			outline: 3px solid lighten($acc, 30%)	
+
+		&[disabled]
+			filter: saturate(50%)
+			outline: none
+			cursor: not-allowed
+
+			&:hover
+				background-color: $acc
+			&:active, &:focus
+				outline: 3px solid #00000000
 
 .form
 	&:not(.input)
 		&:not(.footer)
 			width: 40rem
 			max-width: 95vw
-			
-		
 
 	&.input
 		border: none
@@ -108,3 +156,13 @@ button, input[type="submit"], input[type="button"]
 
 .accountTabOpen 
 	transform: translateX(0) !important
+
+.hide
+	display: none !important
+
+
+svg:root
+	width: 1rem !important
+	height: 1rem !important
+	viewBox: 0 0 1 1 !important
+

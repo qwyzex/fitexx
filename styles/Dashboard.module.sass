@@ -1,0 +1,157 @@
+@import ./Variables
+
+@mixin flexCenter
+    display: flex
+    justify-content: center
+    align-items: center
+
+.container
+    height: calc( 100vh - 6.5rem )
+    max-width: 95vw
+    width: 30rem
+
+    > header
+        display: flex
+        flex-direction: column
+        align-items: center
+        
+        > h1
+            align-self: center
+            color: $whi
+            text-shadow: 0 0 1rem $acc
+
+        div
+            nav
+                @include flexCenter
+                gap: .5rem
+
+                button
+                    padding: .3rem .6rem
+                    font-weight: 600
+                    color: $whi
+                    background-color: $acctrh
+                    border-radius: .3em
+
+                    &:not(:disabled)
+                        &:hover
+                            box-shadow: 0 2px 4px $acctrl
+
+                    &:disabled
+                        background-color: $acc
+                        box-shadow: 0 3px 6px $acctrh
+
+
+    .todoListContainer
+        display: flex
+        justify-content: center
+        align-items: center
+
+        height: calc(100% - 8.5rem)
+        position: relative
+
+        section
+            position: absolute
+            width: 100%
+            height: 95%
+            transition: all .5s
+            // overflow: auto
+
+            padding: .8rem
+            border-radius: .6rem
+
+            background-color: $whi
+            box-shadow: 0 5px 10px #20202020
+
+            *
+                color: $gry
+
+            header
+                display: flex
+                justify-content: space-between
+                align-items: center
+
+                > h1
+                    @include flexCenter
+                    gap: .5rem
+
+                > span
+                    font-weight: 600
+
+            main
+                display: flex
+                flex-direction: column
+                gap: .6rem
+                padding: .4rem
+
+                height: calc(100% - 2rem)
+                overflow: auto
+                padding-block: 1rem
+
+                li
+                    list-style: none
+                    display: flex
+                    gap: .5rem
+
+                    input
+                        border: none
+                        border-inline-start: 3px solid $acctrh
+                        outline: none
+                        transition: .3s ease
+                        padding: .3rem .6rem
+                        width: 100%
+                        background-color: transparent
+
+                        &:focus
+                            background-color: darken($whi, 10%)
+                            border-inline-start: 3px solid $acc
+                            border-radius: 0 .5em .5em 0
+
+                    button
+                        @include flexCenter
+
+                        background-color: $acctrl
+                        padding: .5rem
+                        border-radius: .3em
+
+                        transition: .3s ease
+
+                        &:hover
+                            background-color: $acctrh
+
+                        &:active
+                            background-color: $acc
+                            transform: translateY(3px)
+
+    .form
+        @include flexCenter
+        gap: 1rem 
+
+        width: 100%
+
+        button
+            height: 50px
+            width: 50px
+            padding: 10px
+
+            @include flexCenter
+
+        input
+            font-weight: 600
+            font-size: 1.1rem
+            padding: .5rem 1rem
+            width: 100%
+
+            border: none
+            border-block-end: 4px solid #00000000
+            outline: none
+            box-shadow: 0 3px 6px #20202020
+
+            border-radius: .4em
+            background-color: #ffffff
+            position: relative
+            transition: .3s ease
+
+            &:focus
+                border-block-end: 4px solid $acc
+                box-shadow: 0 3px 6px #00000000
+                

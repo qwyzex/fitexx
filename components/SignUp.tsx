@@ -1,132 +1,104 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db /* , user */ } from "../firebase";
-import { firebaseError, redirect } from "../functions";
-import styles from "../styles/SignUp.module.sass";
-import { addDoc, collection, query, where, setDoc, doc } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { stringify } from "querystring";
+import Link from 'next/link';
+import { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
+import { firerr } from '../functions';
+import styles from '../styles/SignUp.module.sass';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// import firerr from "firerr";
+import SVG from "./Svg";
 
-const SignUpForm = () => {
-    const [user] = useAuthState(auth);
-    const [activeTab, setActiveTab] = useState("createNewUser");
+const SignUpForm = ({ setStateRef }: any) => {
+	const [user] = useAuthState(auth);
+	const [activeTab, setActiveTab] = useState('createNewUser');
 
-    // form values
-    const [formValueEmail, setFormValueEmail] = useState("");
-    const [formValuePassword, setFormValuePassword] = useState("");
+	const [formValueEmail, setFormValueEmail] = useState('');
+	const [formValuePassword, setFormValuePassword] = useState('');
 
-    // user creds values
-    const [formValueUsername, setFormValueUsername] = useState("");
-    const [formValueBio, setFormValueBio] = useState("");
+	const [formError, setFormError] = useState('');
+	const [loading, setLoading] = useState(false);
 
-    // misc
-    const [formError, setFormError] = useState("");
-    const [loading, setLoading] = useState(false);
+	async function createNewUser() {
+		await createUserWithEmailAndPassword(
+			auth,
+			formValueEmail,
+			formValuePassword
+		)
+			.then(() => {
+				setLoading(false);
+				setActiveTab('createUserCredentials');
+				setFormError('');
+			})
+			.catch((error) => {
+				setLoading(false);
+				const code = error.code;
+				firerr(code, setFormError);
+			});
+	}
 
-    async function createNewUser() {
-        await createUserWithEmailAndPassword(auth, formValueEmail, formValuePassword)
-            .then(() => {
-                setLoading(false);
-                setActiveTab("createUserCredentials");
-                setFormError("");
-            })
-            .catch((error) => {
-                setLoading(false);
-                const code = error.code;
-                firebaseError(code, setFormError);
-            });
-    }
-
-    async function updateUserCred(e: any) {
-        e.preventDefault();
-        setLoading(true);
-        await setDoc(doc(db, "users", user!.uid), {
-            uid: user!.uid,
-            username: formValueUsername,
-            bio: formValueBio,
-            complete: true,
-        })
-            .then(() => {
-                setLoading(false);
-            })
-            .catch((error) => {
-                setLoading(false);
-                const code = error.code;
-                firebaseError(code, setFormError);
-            });
-    }
-
-    return (
-        <>
-            {activeTab === "createNewUser" ? (
-                <form
-                    className={`${styles.form} form`}
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        setLoading(true);
-                        createNewUser();
-                    }}
-                >
-                    <div className="wrapper">
-                        <label htmlFor="formEmail">Email</label>
-                        <input
-                            id="formEmail"
-                            type="email"
-                            value={formValueEmail}
-                            onChange={(e) => setFormValueEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="wrapper">
-                        <label htmlFor="formPassword">Password</label>
-                        <input
-                            id="formPassword"
-                            type="password"
-                            value={formValuePassword}
-                            onChange={(e) => setFormValuePassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="wrapper">
-                        <input
-                            id="submit"
-                            type="submit"
-                            value={loading ? "PLEASE WAIT..." : "CONTINUE"}
-                        />
-                    </div>
-                    <footer></footer>
-                </form>
-            ) : (
-                <form className={`${styles.form} form`} onSubmit={updateUserCred}>
-                    <div className="wrapper">
-                        <label htmlFor="formUsername">Username</label>
-                        <input
-                            id="formUsername"
-                            type="text"
-                            value={formValueUsername}
-                            onChange={(e) => setFormValueUsername(e.target.value)}
-                        />
-                    </div>
-                    <div className="wrapper">
-                        <label htmlFor="formBio">Bio</label>
-                        <input
-                            id="formBio"
-                            type="text"
-                            value={formValueBio}
-                            onChange={(e) => setFormValueBio(e.target.value)}
-                        />
-                    </div>
-                    <div className="wrapper">
-                        <input
-                            id="userCredSubmit"
-                            type="submit"
-                            value={loading ? "CREATING NEW USER..." : "SIGN UP"}
-                        />
-                    </div>
-                </form>
-            )}
-            <div className="formError">{formError != "" && <p>{formError}</p>}</div>
-        </>
-    );
+	return (
+		<>
+			<form
+				className={`${styles.form} form`}
+				onSubmit={(e) => {
+					e.preventDefault();
+					setLoading(true);
+					createNewUser();
+				}}
+			>
+				<button
+					type="button"
+					className="global maxWidth"
+					onClick={() => setStateRef('landing')}
+				>
+					{'<< '}BACK
+				</button>
+				<h1><SVG.Register invert /> SIGN UP</h1>
+				<div className="wrapper">
+					<label htmlFor="formEmail">Email</label>
+					<input
+						id="formEmail"
+						type="email"
+						className="form input"
+						value={formValueEmail}
+						onChange={(e) => setFormValueEmail(e.target.value)}
+						placeholder='address@company.com'
+					/>
+				</div>
+				<div className="wrapper">
+					<label htmlFor="formPassword">Password</label>
+					<input
+						id="formPassword"
+						type="password"
+						className="form input"
+						value={formValuePassword}
+						onChange={(e) => setFormValuePassword(e.target.value)}
+						placeholder='Your Password'
+					/>
+				</div>
+				<div className="wrapper">
+					<input
+						id="submit"
+						type="submit"
+						className="global"
+						disabled={loading ? true : false}
+						value={loading ? 'PLEASE WAIT...' : 'CONTINUE'}
+					/>
+				</div>
+				<footer className="form footer">
+					<div>
+						<p>Already Have An Account?</p>
+						<Link href={''}>
+							<a onClick={() => setStateRef('login')}>SIGN IN</a>
+						</Link>
+					</div>
+				</footer>
+			</form>
+			<div className="formError">
+				{formError !== '' && <p>{formError}</p>}
+			</div>
+		</>
+	);
 };
 
 export default SignUpForm;

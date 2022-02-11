@@ -1,0 +1,74 @@
+@import ./Variables
+    
+.container
+    > div
+        color: $acc
+        line-height: 3.5rem
+        cursor: default
+
+        *
+            font-weight: 600
+
+        > h1
+            font-size: 7rem
+            text-shadow: 0 0 1rem $acctrh
+            position: relative
+
+            &::before
+                content: ''
+                position: absolute
+                top: 140%
+                right: 0
+
+                height: 5px
+                width: 0
+
+                transition: .3s ease
+                border-radius: .5em
+                background-color: $err
+
+            span    
+                text-shadow: 0 -47px $whi
+                transition: .8s ease
+
+            &:hover
+                &::before
+                    width: 1.35em
+
+                span
+                    color: $err
+                    text-shadow: 0 0 2rem $err
+
+        > p
+            color: $whi
+            height: max-content
+            margin-block-start: 10px
+            margin-inline-start: 5px
+
+    > section
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        gap: 1rem
+
+        button
+            padding: .6rem 1rem
+            background-color: $acc
+
+            outline: 3px solid #00000000
+            border-radius: .3em
+
+            font-weight: 600
+            color: $whi
+
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: .5rem
+
+            &:hover
+                background-color: lighten($acc, 4%)
+                filter: saturate(120%)
+
+            &:active
+                outline: 3px solid $acctrl

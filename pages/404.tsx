@@ -7,7 +7,7 @@ const Error404: NextPage = () => {
         redirect("/");
     }, []);
 
-    return <div></div>;
+    return <></>;
 };
 
 export default Error404;
