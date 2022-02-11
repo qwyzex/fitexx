@@ -1,36 +1,38 @@
-import Link from "next/link";
-import { useState } from "react";
-import styles from "../styles/Footer.module.sass";
-import AccountTab from "./AccountTab";
+import { useState } from 'react';
+import styles from '../styles/Footer.module.sass';
+import AccountTab from './AccountTab';
+import SVG from './Svg';
 
 const Footer = () => {
-    const [openAccountTab, setOpenAccountTab] = useState(false);
+	const [openAccountTab, setOpenAccountTab] = useState(false);
 
-    return (
-        <>
-            <AccountTab
-                setStateRef={openAccountTab && setOpenAccountTab}
-                stateRef={openAccountTab && openAccountTab}
-                cls={openAccountTab ? "accountTabOpen" : ""}
-            />
-            <footer className={styles.container}>
-                <nav>
-                    <ul className={styles.listWrapper}>
-                        <li className={styles.listItem}>
-                            <button onClick={() => setOpenAccountTab(false)}>
-                                DASHBOARD
-                            </button>
-                        </li>
-                        <li className={styles.listItem}>
-                            <button onClick={() => setOpenAccountTab(!openAccountTab)}>
-                                ACCOUNT
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </footer>
-        </>
-    );
+	return (
+		<>
+			<AccountTab
+				setStateRef={openAccountTab && setOpenAccountTab}
+				stateRef={openAccountTab && openAccountTab}
+				cls={openAccountTab ? 'accountTabOpen' : ''}
+			/>
+			<footer className={styles.container}>
+				<nav>
+					<button
+						title="Dashboard"
+						disabled={openAccountTab ? false : true}
+						onClick={() => setOpenAccountTab(false)}
+					>
+						<SVG.Home />
+					</button>
+					<button
+						title="Account"
+						disabled={!openAccountTab ? false : true}
+						onClick={() => setOpenAccountTab(!openAccountTab)}
+					>
+						<SVG.User />
+					</button>
+				</nav>
+			</footer>
+		</>
+	);
 };
 
 export default Footer;

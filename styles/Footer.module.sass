@@ -9,20 +9,47 @@
     transform: translateX(-50%)
     z-index: 10
 
-    width: 100%
-    background-color: $gry
+    width: 100vw
+    height: 4rem
+    background-color: $whi
+    box-shadow: 0 -1rem 3rem #20202020
 
     nav
-        ul
-            display: flex
-            gap: 1rem
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 1rem
 
-            li
-                list-style: none
+        transform: translate(0, -70%)
 
-                button
-                    padding: .8rem
-                    border-radius: .2rem
+        button
+            height: 4rem
+            width: 4rem
 
-                    color: $gry
-                    background-color: $whi
+            padding: .8rem
+            border: none
+            border-radius: .2rem
+
+            color: $gry
+            background-color: #20202020
+            backdrop-filter: blur(6px)
+            transition: .4s ease
+
+            svg
+                filter: invert(80%)
+                transition: .3s ease
+
+            &:hover
+                background-color: $acctrh
+                box-shadow: 0 0 .3rem $acctrl
+
+            &:active
+                outline: none
+
+            &:disabled
+                background-color: $acc !important
+                filter: none
+                box-shadow: 0 0 1rem $acc
+
+                svg
+                    filter: invert(0)

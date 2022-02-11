@@ -1,7 +1,16 @@
 {
-    "name": "firebase-todo",
-    "version": "0.0.3",
+    "name": "fitexx",
+    "version": "1.0.2",
     "private": true,
+    "author": {
+        "name": "qwyzex",
+        "email": "qwyzex@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/qwyzex/fitexx"
+    },
+    "license": "CC-BY-NC-SA-4.0",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -9,12 +18,15 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@dicebear/avatars": "^4.10.2",
+        "@dicebear/avatars-identicon-sprites": "^4.10.2",
+        "crypto": "^1.0.1",
         "firebase": "^9.6.4",
-        "firerr": "^0.0.4",
+        "firerr": "^0.1.1",
         "next": "12.0.9",
         "react": "17.0.2",
         "react-dom": "17.0.2",
-        "react-firebase-hooks": "^5.0.0",
+        "react-firebase-hooks": "^4.0.1",
         "spinners-react": "^1.0.6"
     },
     "devDependencies": {
