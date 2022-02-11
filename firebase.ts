@@ -4,13 +4,13 @@ import { Firestore, getFirestore } from 'firebase/firestore';
 
 // fitexx
 const fitexxConfig = {
-	apiKey: 'AIzaSyAJyle4WmzmoQh6G1ovogJEkMP9QlSdTCE',
-	authDomain: 'fitexx-qwyzex.firebaseapp.com',
-	projectId: 'fitexx-qwyzex',
-	storageBucket: 'fitexx-qwyzex.appspot.com',
-	messagingSenderId: '197356418403',
-	appId: '1:197356418403:web:f5915c242874e710fdcf56',
-	measurementId: 'G-VYK3FTNVRX',
+  apiKey: "AIzaSyB-nVz0VvXstw00aMe68jbx0xRGA58eKyU",
+  authDomain: "qwyzex-fitexx.firebaseapp.com",
+  projectId: "qwyzex-fitexx",
+  storageBucket: "qwyzex-fitexx.appspot.com",
+  messagingSenderId: "101054144241",
+  appId: "1:101054144241:web:80914b4d044a4521af1350",
+  measurementId: "G-1SMK5HRV7M"
 };
 
 // todo-firebase
