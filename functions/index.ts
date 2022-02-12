@@ -37,12 +37,12 @@ export function firerr(
 			);
 			break;
 		case 'auth/timeout':
-			setState('Request timeout, try again later');
+			setState('Request Timeout');
 			break;
 		case 'auth/argument-error':
 		case 'auth/invalid-persistence-type':
 		case 'auth/unsupported-persistence-type':
-			setState('an unknown error occured');
+			setState('An Unknown Error Occured');
 			break;
 		case 'auth/invalid-credential':
 			setState('Invalid credentials');
@@ -63,7 +63,7 @@ export function firerr(
 			setState('Invalid custom token');
 			break;
 		case 'auth/captcha-check-failed':
-			setState('Captcha failed');
+			setState('Captcha Failed');
 			break;
 		case 'auth/invalid-phone-number':
 			setState('Invalid phone number');
@@ -72,7 +72,7 @@ export function firerr(
 			setState('Please enter a phone number');
 			break;
 		case 'auth/quota-exceeded':
-			setState('Authentication qota exceeded');
+			setState('Authentication quota exceeded');
 			break;
 		case 'auth/cancelled-popup-request':
 			setState('Cancelled popup authentication');
@@ -81,7 +81,7 @@ export function firerr(
 			setState('Popup is blocked');
 			break;
 		case 'auth/popup-closed-by-user':
-			setState('Popup window is closed by the user');
+			setState('Popup window is closed');
 			break;
 		case 'auth/invalid-user-token':
 			setState('Invalid user token');
@@ -126,7 +126,7 @@ export function firerr(
 			setState('Invalid password hash');
 			break;
 		case 'auth/invalid-photo-url':
-			setState("Invalid user's profile picture");
+			setState("Invalid user's profile picture URL");
 			break;
 		case 'auth/invalid-provider-id':
 			setState('Invalid provider id');
