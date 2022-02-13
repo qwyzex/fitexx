@@ -26,15 +26,16 @@ import LoadingCircular from './LoadingCircular';
 const Dashboard = () => {
 	const [user] = useAuthState(auth);
 
-	const todosRef: CollectionReference<DocumentData> = collection(db, `users/${user!.uid}/todos`);
+	const todosRef: CollectionReference<DocumentData> = collection(
+		db,
+		`users/${user!.uid}/todos`
+	);
 
-	const todosQueryUnfinished: Query<DocumentData> = query(todosRef, orderBy('createdAt'));
-	const [todosDataUnfinished] = useCollectionData(todosQueryUnfinished, {
-		idField: 'id',
-	});
-
-	const todosQueryFinished: Query<DocumentData> = query(todosRef, orderBy('createdAt'));
-	const [todosDataFinished] = useCollectionData(todosQueryFinished, {
+	const todosQuery: Query<DocumentData> = query(
+		todosRef,
+		orderBy('createdAt')
+	);
+	const [todosData] = useCollectionData(todosQuery, {
 		idField: 'id',
 	});
 
@@ -69,8 +70,8 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		async function getTodosDocuments() {
-			await getDocs(todosQueryFinished);
-			await getDocs(todosQueryUnfinished);
+			await getDocs(todosQuery);
+			await getDocs(todosQuery);
 		}
 		getTodosDocuments()
 			.then(() => {
@@ -147,8 +148,8 @@ const Dashboard = () => {
 								</h1>
 								<span>
 									(
-									{todosDataUnfinished &&
-										todosDataUnfinished.filter(
+									{todosData &&
+										todosData.filter(
 											(todo) => todo.complete === false
 										)?.length}
 									)
@@ -162,10 +163,10 @@ const Dashboard = () => {
 											: 'none',
 								}}
 							>
-								{todosDataUnfinished?.filter(
+								{todosData?.filter(
 									(todo) => todo.complete === false
 								)?.length
-									? todosDataUnfinished
+									? todosData
 											.filter(
 												(todo) =>
 													todo.complete === false
@@ -212,8 +213,8 @@ const Dashboard = () => {
 								</h1>
 								<span>
 									(
-									{todosDataFinished &&
-										todosDataFinished.filter(
+									{todosData &&
+										todosData.filter(
 											(todo) => todo.complete === true
 										)?.length}
 									)
@@ -227,10 +228,10 @@ const Dashboard = () => {
 											: 'none',
 								}}
 							>
-								{todosDataFinished?.filter(
+								{todosData?.filter(
 									(todo) => todo.complete === true
 								)?.length
-									? todosDataFinished
+									? todosData
 											.filter(
 												(todo) => todo.complete === true
 											)

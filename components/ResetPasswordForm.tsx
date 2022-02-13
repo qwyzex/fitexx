@@ -1,5 +1,5 @@
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { firerr } from "../functions";
+import { firerr } from '../functions';
 import { useState } from 'react';
 import { auth } from '../firebase';
 import styles from '../styles/ResetPasswordForm.module.sass';
@@ -30,8 +30,6 @@ export default function ResetPasswordForm() {
 				setLoading(false);
 				const code = error.code;
 				firerr(code, setFormError);
-				console.log(error)
-				// setFormError(code)
 			});
 	}
 
@@ -45,9 +43,13 @@ export default function ResetPasswordForm() {
 				className="form input"
 				value={formValueEmail}
 				onChange={(e) => setFormValueEmail(e.target.value)}
-				placeholder='Your Email Address'
+				placeholder="Your Email Address"
 			/>
-			<button type="submit" className="global" disabled={loading ? true : false}>
+			<button
+				type="submit"
+				className="global"
+				disabled={loading ? true : false}
+			>
 				{loading ? 'SENDING...' : 'SEND EMAIL'}
 			</button>
 			{sended && (

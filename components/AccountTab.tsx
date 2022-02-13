@@ -54,7 +54,7 @@ const AccountTab = (props: any) => {
 					setUserData(docSnap.data());
 				})
 				.catch((error: any) => {
-					const code:string = error.code;
+					const code: string = error.code;
 					firerr(code, setFormError);
 
 					console.warn(error.code);
@@ -73,7 +73,11 @@ const AccountTab = (props: any) => {
 		e.preventDefault();
 		setFormLoading(true);
 
-		const docRef: DocumentReference<DocumentData> = doc(db, 'users', userData.uid);
+		const docRef: DocumentReference<DocumentData> = doc(
+			db,
+			'users',
+			userData.uid
+		);
 		await updateDoc(docRef, {
 			username:
 				formValueUsername !== userData.username
@@ -95,8 +99,7 @@ const AccountTab = (props: any) => {
 
 	useEffect(() => {
 		getUserCredentials();
-		// eslint-disable-next-line
-	}, [user, userData]);
+	}, []);
 
 	useEffect(() => {
 		if (props.stateRef !== true) {
@@ -135,19 +138,22 @@ const AccountTab = (props: any) => {
 						<span>{isInEditMode ? 'CANCEL' : 'EDIT'}</span>
 					</button>
 				</header>
-				<section>
-					<img
-						src={
-							userData ? userData!.profilePicture : '/favicon.ico'
-						}
-						alt=""
-						width={80}
-						height={80}
-					/>
-				</section>
+
 				{isInEditMode ? (
 					<>
 						<form onSubmit={updateUserCred}>
+							<section>
+								<img
+									src={
+										userData
+											? userData!.profilePicture
+											: '/favicon.ico'
+									}
+									alt=""
+									width={80}
+									height={80}
+								/>
+							</section>
 							<div>
 								<label>
 									USERNAME <span>*</span>
@@ -222,6 +228,18 @@ const AccountTab = (props: any) => {
 					</>
 				) : (
 					<>
+						<section>
+							<img
+								src={
+									userData
+										? userData!.profilePicture
+										: '/favicon.ico'
+								}
+								alt=""
+								width={80}
+								height={80}
+							/>
+						</section>
 						<div>
 							<label>USERNAME</label>
 							<h3>{userData && userData.username}</h3>
