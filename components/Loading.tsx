@@ -6,6 +6,7 @@ export interface LoadingProps {
 	thickness?: number;
 	fixed?: boolean;
 	absolute?: boolean;
+	secondaryColor?: string;
 }
 
 export default function Loading(props: LoadingProps) {

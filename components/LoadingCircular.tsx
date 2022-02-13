@@ -7,6 +7,9 @@ export default function LoadingCircular(props: LoadingProps) {
 			speed={150}
 			size={props.size ? props.size : 75}
 			color={props.color ? props.color : '#6114f1'}
+			secondaryColor={
+				props.secondaryColor ? props.secondaryColor : '#6114f130'
+			}
 			thickness={props.thickness ? props.thickness : 100}
 			style={{
 				position: props.fixed
