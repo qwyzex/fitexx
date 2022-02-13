@@ -3,15 +3,12 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { firerr } from '../functions';
-import styles from '../styles/SignUp.module.sass';
-import { useAuthState } from 'react-firebase-hooks/auth';
 // import firerr from "firerr";
-import SVG from "./Svg";
+
+import styles from '../styles/SignUp.module.sass';
+import SVG from './Svg';
 
 const SignUpForm = ({ setStateRef }: any) => {
-	const [user] = useAuthState(auth);
-	const [activeTab, setActiveTab] = useState('createNewUser');
-
 	const [formValueEmail, setFormValueEmail] = useState('');
 	const [formValuePassword, setFormValuePassword] = useState('');
 
@@ -26,7 +23,6 @@ const SignUpForm = ({ setStateRef }: any) => {
 		)
 			.then(() => {
 				setLoading(false);
-				setActiveTab('createUserCredentials');
 				setFormError('');
 			})
 			.catch((error) => {
@@ -53,7 +49,9 @@ const SignUpForm = ({ setStateRef }: any) => {
 				>
 					{'<< '}BACK
 				</button>
-				<h1><SVG.Register invert /> SIGN UP</h1>
+				<h1>
+					<SVG.Register invert /> SIGN UP
+				</h1>
 				<div className="wrapper">
 					<label htmlFor="formEmail">Email</label>
 					<input
@@ -62,7 +60,7 @@ const SignUpForm = ({ setStateRef }: any) => {
 						className="form input"
 						value={formValueEmail}
 						onChange={(e) => setFormValueEmail(e.target.value)}
-						placeholder='address@company.com'
+						placeholder="address@company.com"
 					/>
 				</div>
 				<div className="wrapper">
@@ -73,7 +71,7 @@ const SignUpForm = ({ setStateRef }: any) => {
 						className="form input"
 						value={formValuePassword}
 						onChange={(e) => setFormValuePassword(e.target.value)}
-						placeholder='Your Password'
+						placeholder="Your Password"
 					/>
 				</div>
 				<div className="wrapper">

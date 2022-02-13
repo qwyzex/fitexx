@@ -24,7 +24,7 @@ const originalConfig = {
 	measurementId: 'G-XZ3PLJ6J8Y',
 };
 
-export const app: FirebaseApp = initializeApp(fitexxConfig);
+export const app: FirebaseApp = initializeApp(originalConfig);
 export const auth: Auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
 

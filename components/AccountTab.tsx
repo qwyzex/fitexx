@@ -99,8 +99,7 @@ const AccountTab = (props: any) => {
 
 	useEffect(() => {
 		getUserCredentials();
-		// eslint-disable-next-line
-	}, [user, userData]);
+	}, []);
 
 	useEffect(() => {
 		if (props.stateRef !== true) {
