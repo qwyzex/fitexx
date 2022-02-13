@@ -13,12 +13,13 @@ import {
 	serverTimestamp,
 	updateDoc,
 } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import styles from '../styles/Dashboard.module.sass';
 import { db, auth } from '../firebase';
-import { useEffect, useState } from 'react';
 import firerr from 'firerr';
+
+import styles from '../styles/Dashboard.module.sass';
 import Loading from './Loading';
 import SVG from './Svg';
 import LoadingCircular from './LoadingCircular';
@@ -360,9 +361,11 @@ export const TodoList = (props: TodoItemProps) => {
 				spellCheck={false}
 				onBlur={async (e) => {
 					const docRef = doc(props.todoRef, props.id);
-					await updateDoc(docRef, {
-						title: e.target.value,
-					});
+					if (e.target.value !== props.title) {
+						await updateDoc(docRef, {
+							title: e.target.value,
+						});
+					}
 				}}
 			/>
 			<button
