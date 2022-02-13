@@ -20,22 +20,13 @@ const Home: NextPage = () => {
 	const [activePage, setActivePage] = useState('loading');
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
+		onAuthStateChanged(auth, (loggedIn) => {
+			if (loggedIn) {
 				setActivePage('dashboard');
 			} else {
 				setActivePage('landing');
 			}
 		});
-		/* if (user) {
-			if (activePage !== 'dashboard') {
-				setActivePage('dashboard');
-			}
-		} else {
-			setTimeout(() => {
-				setActivePage('landing');
-			}, 350);
-		} */
 		// eslint-disable-next-line
 	}, [user]);
 

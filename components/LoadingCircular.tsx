@@ -1,19 +1,27 @@
 import { SpinnerCircular } from 'spinners-react';
+import { LoadingProps } from './Loading';
 
-export default function LoadingCircular({ fixed, absolute, color, size, thickness }: any) {
+export default function LoadingCircular(props: LoadingProps) {
 	return (
 		<SpinnerCircular
 			speed={150}
-			size={size ? size : 75}
-			color={color ? color : '#6114f1'}
-			thickness={thickness ? thickness : 100}
+			size={props.size ? props.size : 75}
+			color={props.color ? props.color : '#6114f1'}
+			thickness={props.thickness ? props.thickness : 100}
 			style={{
-				position: fixed ? 'fixed' : absolute ? 'absolute' : 'relative',
+				position: props.fixed
+					? 'fixed'
+					: props.absolute
+					? 'absolute'
+					: 'relative',
 				zIndex: 100,
-				top: fixed || absolute ? '50%' : '',
-				left: fixed || absolute ? '50%' : '',
-				transform: fixed || absolute ? 'translate(-50%, -50%)' : '',
+				top: props.fixed || props.absolute ? '50%' : '',
+				left: props.fixed || props.absolute ? '50%' : '',
+				transform:
+					props.fixed || props.absolute
+						? 'translate(-50%, -50%)'
+						: '',
 			}}
 		/>
 	);
-};
+}
