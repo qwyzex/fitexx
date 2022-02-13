@@ -12,6 +12,7 @@ import Loading from '../components/Loading';
 import Login from '../components/Login';
 import SignUpForm from '../components/SignUp';
 import Landing from '../components/Landing';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Home: NextPage = () => {
 	const [user] = useAuthState(auth);
@@ -19,7 +20,14 @@ const Home: NextPage = () => {
 	const [activePage, setActivePage] = useState('loading');
 
 	useEffect(() => {
-		if (user) {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setActivePage('dashboard');
+			} else {
+				setActivePage('landing');
+			}
+		});
+		/* if (user) {
 			if (activePage !== 'dashboard') {
 				setActivePage('dashboard');
 			}
@@ -27,7 +35,7 @@ const Home: NextPage = () => {
 			setTimeout(() => {
 				setActivePage('landing');
 			}, 350);
-		}
+		} */
 		// eslint-disable-next-line
 	}, [user]);
 
