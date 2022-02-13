@@ -24,7 +24,16 @@ const originalConfig = {
 	measurementId: 'G-XZ3PLJ6J8Y',
 };
 
-export const app: FirebaseApp = initializeApp(originalConfig);
+const firebaseConfig = {
+	apiKey: 'AIzaSyB40DuRqN6DS4DYnrq5zjtFNo-7YcvCUxc',
+	authDomain: 'fitexx-59df5.firebaseapp.com',
+	projectId: 'fitexx-59df5',
+	storageBucket: 'fitexx-59df5.appspot.com',
+	messagingSenderId: '441352535402',
+	appId: '1:441352535402:web:2a26ffcb775d250424f913',
+};
+
+export const app: FirebaseApp = initializeApp(firebaseConfig);
 export const auth: Auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
 
