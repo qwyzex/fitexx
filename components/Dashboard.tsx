@@ -250,14 +250,14 @@ const Dashboard = () => {
 						</section>
 					</>
 				) : (
-					<Loading />
+					<LoadingCircular thickness={250} />
 				)}
 			</div>
 			<form onSubmit={addTodo} className={styles.form}>
 				<input
 					type="text"
 					value={formValueTodoItem}
-					readOnly={addingTodo ? true : false}
+					readOnly={addingTodo ? true : loading ? true : false}
 					required
 					onChange={(e) => setFormValueTodoItem(e.target.value)}
 					placeholder={'What To Do? :3'}
