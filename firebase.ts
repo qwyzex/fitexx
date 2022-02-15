@@ -1,5 +1,5 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Auth, getAuth } from 'firebase/auth';
+import { Auth, getAuth, User } from 'firebase/auth';
 import { Firestore, getFirestore } from 'firebase/firestore';
 
 // fitexx
@@ -24,6 +24,7 @@ const originalConfig = {
 	measurementId: 'G-XZ3PLJ6J8Y',
 };
 
+// new
 const firebaseConfig = {
 	apiKey: 'AIzaSyB40DuRqN6DS4DYnrq5zjtFNo-7YcvCUxc',
 	authDomain: 'fitexx-59df5.firebaseapp.com',
@@ -37,4 +38,4 @@ export const app: FirebaseApp = initializeApp(firebaseConfig);
 export const auth: Auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
 
-export const user = auth.currentUser;
+export const user: User | null = auth.currentUser;

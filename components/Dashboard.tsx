@@ -13,12 +13,13 @@ import {
 	serverTimestamp,
 	updateDoc,
 } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import styles from '../styles/Dashboard.module.sass';
 import { db, auth } from '../firebase';
-import { useEffect, useState } from 'react';
 import firerr from 'firerr';
+
+import styles from '../styles/Dashboard.module.sass';
 import Loading from './Loading';
 import SVG from './Svg';
 import LoadingCircular from './LoadingCircular';
@@ -249,14 +250,14 @@ const Dashboard = () => {
 						</section>
 					</>
 				) : (
-					<Loading />
+					<LoadingCircular thickness={250} />
 				)}
 			</div>
 			<form onSubmit={addTodo} className={styles.form}>
 				<input
 					type="text"
 					value={formValueTodoItem}
-					readOnly={addingTodo ? true : false}
+					readOnly={addingTodo ? true : loading ? true : false}
 					required
 					onChange={(e) => setFormValueTodoItem(e.target.value)}
 					placeholder={'What To Do? :3'}
@@ -360,9 +361,11 @@ export const TodoList = (props: TodoItemProps) => {
 				spellCheck={false}
 				onBlur={async (e) => {
 					const docRef = doc(props.todoRef, props.id);
-					await updateDoc(docRef, {
-						title: e.target.value,
-					});
+					if (e.target.value !== props.title) {
+						await updateDoc(docRef, {
+							title: e.target.value,
+						});
+					}
 				}}
 			/>
 			<button

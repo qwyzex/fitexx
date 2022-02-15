@@ -1,6 +1,6 @@
 {
     "name": "fitexx",
-    "version": "1.0.2",
+    "version": "1.1.1",
     "private": true,
     "author": {
         "name": "qwyzex",
@@ -20,7 +20,6 @@
     "dependencies": {
         "@dicebear/avatars": "^4.10.2",
         "@dicebear/avatars-identicon-sprites": "^4.10.2",
-        "crypto": "^1.0.1",
         "firebase": "^9.6.4",
         "firerr": "^0.1.1",
         "next": "12.0.9",
